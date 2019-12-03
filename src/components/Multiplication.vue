@@ -91,8 +91,12 @@ export default {
       const minimum = 2;
       for (let i = 0; i < this.maxCols; i++) {
         this.exercises.push({
-          a:  Math.floor(Math.random() * (this.maxNumber1 - minimum + 1)) + minimum,
-          b:  Math.floor(Math.random() * (this.maxNumber2 - minimum + 1)) + minimum,
+          a:
+            Math.floor(Math.random() * (this.maxNumber1 - minimum + 1)) +
+            minimum,
+          b:
+            Math.floor(Math.random() * (this.maxNumber2 - minimum + 1)) +
+            minimum,
           // a: Math.floor(Math.random() * Math.floor(this.maxNumber1)),
           // b: Math.floor(Math.random() * Math.floor(this.maxNumber2)),
           r: null
