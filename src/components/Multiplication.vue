@@ -16,14 +16,14 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label>Max Cols:</label>
+          <label>Exercises:</label>
           <input v-model="maxCols" type="text" class="form-control" placeholder="Max Cols" />
         </div>
       </div>
       <div class="col-4">
         <div class="form-group">
           <label>Press start to begin</label>
-          <button v-on:click.prevent="onMultipStart" class="btn btn-outline-primary w-75">Start</button>
+          <button v-on:click.prevent="onStart" class="btn btn-outline-primary w-100">Start</button>
         </div>
       </div>
     </div>
@@ -40,12 +40,6 @@
                 class="form-control text-center"
                 v-bind:class="{ 'is-valid': exercise.isCorrect, 'is-invalid': exercise.isCorrect==false}"
               />
-              <!-- <div v-bind:class="{ 'valid-feedback': exercise.isCorrect }"
-                v-if="exercise.isCorrect"
-                >Correct!</div>
-                <div v-bind:class="{ 'invalid-feedback': !exercise.isCorrect }"
-                v-else-if="!exercise.isCorrect"
-              >Not Correct!</div>-->
             </p>
           </div>
         </div>
@@ -60,7 +54,7 @@
         >Score: {{score}}/{{maxCols}} ({{score/maxCols*100}}%)</div>
       </div>
       <div class="col-4">
-        <button v-on:click.prevent="onDone" class="btn btn-primary btn-lg w-75">Done</button>
+        <button v-on:click.prevent="onDone" class="btn btn-primary btn-lg w-100">Done</button>
       </div>
     </div>
   </div>
@@ -84,7 +78,7 @@ export default {
     };
   },
   methods: {
-    onMultipStart: function() {
+    onStart: function() {
       this.started = true;
       this.exercises = [];
       this.score = 0;
@@ -127,11 +121,12 @@ export default {
 }
 .form-control.is-valid,
 .was-validated .form-control:valid {
-  border-color: #28a745;
-  padding-right: calc(1.5em + 0.75rem);
-  background-image: url(data:image/svg+xml,%3csvg xmlns=http://www.w3.org/2000/svg viewBox=0 0 8… 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z/%3e%3c/svg%3e);
-  background-repeat: no-repeat;
-  background-position: center right calc(0.375em + 0.1875rem);
-  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  padding-right: 0!important;
 }
+
+.form-control.is-invalid, 
+.was-validated .form-control:invalid{
+  padding-right: 0!important;
+}
+
 </style>
