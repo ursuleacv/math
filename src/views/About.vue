@@ -1,32 +1,45 @@
 <template>
-  <div class="about">
+  <div class="container">
     <h1>Contact us</h1>
-    <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
-      <p>
-        <label>Your Name: <input type="text" name="name" class="form-control" /></label>   
-      </p>
-      <p>
-        <label>Your Email: <input type="email" name="email" class="form-control"/></label>
-      </p>
-      <p>
-        <label>Message: <textarea name="message" class="form-control"></textarea></label>
-      </p>
-      <div data-netlify-recaptcha="true"></div>
-      <p>
-        <button type="submit" class="btn btn-primary">Send</button>
-      </p>
-    </form>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-left">
+        <form name="contact-form" method="POST" netlify netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true">
+          <p>
+            <label>Your Name: </label>
+            <input type="text" name="name" class="form-control" />   
+          </p>
+          <p>
+            <label>Your Email: </label>
+            <input type="email" name="email" class="form-control"/>
+          </p>
+          <p>
+            <label>Message: </label>
+            <textarea name="message" class="form-control"></textarea>
+          </p>
+          <div data-netlify-recaptcha="true"></div>
+          <p class="text-center">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </p>
+      </form>
+      </div>
+    </div>
   </div>
 </template>
-
 
 <script>
 // @ is an alias to /src
 
 export default {
-  name: 'about',
+  name: "contact-form",
   components: {
     
+  },
+  data: function() {
+    return {
+      name: '',
+      email: '',
+      message: '',
+    };
   },
   metaInfo: {
     title: 'Math for kids',

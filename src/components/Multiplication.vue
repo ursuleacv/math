@@ -2,25 +2,25 @@
   <div class="container">
     <h1>Multiplication</h1>
     <div class="row">
-      <div class="col">
+      <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Max Number 1:</label>
           <input v-model="maxNumber1" type="text" class="form-control" placeholder="Max Number 1" />
         </div>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Max Number 2:</label>
           <input v-model="maxNumber2" type="text" class="form-control" placeholder="Max Number 2" />
         </div>
       </div>
-      <div class="col">
+      <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Exercises:</label>
           <input v-model="maxCols" type="text" class="form-control" placeholder="Max Cols" />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Press start to begin</label>
           <button v-on:click.prevent="onStart" class="btn btn-outline-primary w-100">Start</button>
@@ -29,8 +29,9 @@
     </div>
 
     <form class="form-inline needs-validation" novalidate>
-      <div class="row mt-5">
-        <div v-for="(exercise, id) in exercises" :key="id" class="col">
+      <div class="container">
+        <div class="row mt-5">
+        <div v-for="(exercise, id) in exercises" :key="id" class="col-12 col-sm-4 col-md-3">
           <div class="form-group">
             <p>
               <span class="exercise">{{exercise.a}} {{op}} {{exercise.b}} =</span>
@@ -43,6 +44,7 @@
             </p>
           </div>
         </div>
+      </div>
       </div>
     </form>
 
@@ -119,6 +121,9 @@ export default {
 .final-score {
   font-weight: bold;
 }
+
+.form-inline .form-control{width: 100%; }
+
 .form-control.is-valid,
 .was-validated .form-control:valid {
   padding-right: 0!important;
