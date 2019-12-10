@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Multiplication</h2>
+    <h2>Addition (+)</h2>
     <div class="row justify-content-center">
       <div class="col-12 col-md-auto">
         <div class="form-group">
@@ -64,14 +64,14 @@
 
 <script>
 export default {
-  name: "Multiplication",
+  name: "Addition",
   props: {
     op: String
   },
   data: function() {
     return {
       maxNumber1: 5,
-      maxNumber2: 12,
+      maxNumber2: 5,
       maxCols: 20,
       exercises: [],
       score: 0,
@@ -84,7 +84,7 @@ export default {
       this.started = true;
       this.exercises = [];
       this.score = 0;
-      const minimum = 2;
+      const minimum = 1;
       for (let i = 0; i < this.maxCols; i++) {
         this.exercises.push({
           a:
@@ -103,7 +103,7 @@ export default {
       this.finished = true;
       this.score = 0;
       this.exercises.forEach(ex => {
-        if (ex.a * ex.b == ex.r) {
+        if (ex.a + ex.b == ex.r) {
           ex.isCorrect = true;
           this.score++;
         } else {

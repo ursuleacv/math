@@ -1,23 +1,21 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <h1>Math for kids</h1>
-    <div class="col-md-auto">
-      <h3><router-link to="/addition">Addition (+)</router-link></h3>
-      <h3><router-link to="/multiplication">Multiplication (*)</router-link></h3>
-    </div>
+  <div>
+    <Addition op="+"/>
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+import Addition from '@/components/Addition.vue'
 
 export default {
-  name: 'home',
+  name: 'addition',
   components: {
+    Addition
   },
   metaInfo: {
     title: 'Math for kids',
-    titleTemplate: '%s - Home',
+    titleTemplate: '%s - Addition',
     // Define meta tags here.
     meta: [
       // {"http-equiv": 'Content-Type', content: 'text/html; charset=utf-8'},
