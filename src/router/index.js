@@ -29,6 +29,12 @@ const routes = [{
         name: 'addition',
         component: () =>
             import ( /* webpackChunkName: "addition" */ '../views/Addition.vue')
+    },
+    {
+        path: '/conversion',
+        name: 'conversion',
+        component: () =>
+            import ( /* webpackChunkName: "conversion" */ '../views/Conversion.vue')
     }
 ]
 

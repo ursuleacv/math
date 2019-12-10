@@ -5,6 +5,8 @@
     <div class="col-md-auto">
       <h3><router-link to="/addition">Addition (+)</router-link></h3>
       <h3><router-link to="/multiplication">Multiplication (*)</router-link></h3>
+      <h3><router-link to="/conversion">Conversion (m,cm)</router-link></h3>
+
     </div>
   </div>
 </template>
