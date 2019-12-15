@@ -35,6 +35,12 @@ const routes = [{
         name: 'conversion',
         component: () =>
             import ( /* webpackChunkName: "conversion" */ '../views/Conversion.vue')
+    },
+    {
+        path: '/polygonsNames',
+        name: 'polygonsNames',
+        component: () =>
+            import ( /* webpackChunkName: "PolygonNames" */ '../views/PolygonNames.vue')
     }
 ]
 
