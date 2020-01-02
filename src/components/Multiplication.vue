@@ -5,19 +5,19 @@
       <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Max Number 1:</label>
-          <input v-model="maxNumber1" type="text" class="form-control" placeholder="Max Number 1" />
+          <input v-model.trim="maxNumber1" type="text" class="form-control" placeholder="Max Number 1" />
         </div>
       </div>
       <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Max Number 2:</label>
-          <input v-model="maxNumber2" type="text" class="form-control" placeholder="Max Number 2" />
+          <input v-model.trim="maxNumber2" type="text" class="form-control" placeholder="Max Number 2" />
         </div>
       </div>
       <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Exercises:</label>
-          <input v-model="maxCols" type="text" class="form-control" placeholder="Max Cols" />
+          <input v-model.trim="maxCols" type="text" class="form-control" placeholder="Max Cols" />
         </div>
       </div>
       <div class="col-12 col-md-auto">
@@ -31,20 +31,20 @@
     <form class="form-inline needs-validation" novalidate>
       <div class="container">
         <div class="row mt-5">
-        <div v-for="(exercise, id) in exercises" :key="id" class="col-12 col-sm-4 col-md-3">
-          <div class="form-group">
-            <p>
-              <span class="exercise">{{exercise.a}} {{op}} {{exercise.b}} =</span>
-              <input
-                v-model="exercise.r"
-                type="text"
-                class="form-control text-center"
-                v-bind:class="{ 'is-valid': exercise.isCorrect, 'is-invalid': exercise.isCorrect==false}"
-              />
-            </p>
+          <div v-for="(exercise, id) in exercises" :key="id" class="col-12 col-sm-4 col-md-3">
+            <div class="form-group">
+              <p>
+                <span class="exercise">{{exercise.a}} {{op}} {{exercise.b}} =</span>
+                <input
+                  v-model="exercise.r"
+                  type="text"
+                  class="form-control text-center"
+                  v-bind:class="{ 'is-valid': exercise.isCorrect, 'is-invalid': exercise.isCorrect==false}"
+                />
+              </p>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </form>
 
@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import { bus } from "../main";
+
 export default {
   name: "Multiplication",
   props: {
@@ -110,6 +112,14 @@ export default {
           ex.isCorrect = false;
         }
       });
+
+      bus.$emit("onDone", {
+        module: "multiplication",
+        date: new Date(),
+        exercises: this.exercises,
+        score: this.score,
+        maxCols: this.maxCols
+      });
     }
   }
 };
@@ -122,16 +132,17 @@ export default {
   font-weight: bold;
 }
 
-.form-inline .form-control{width: 100%; }
+.form-inline .form-control {
+  width: 100%;
+}
 
 .form-control.is-valid,
 .was-validated .form-control:valid {
-  padding-right: 0!important;
+  padding-right: 0 !important;
 }
 
-.form-control.is-invalid, 
-.was-validated .form-control:invalid{
-  padding-right: 0!important;
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  padding-right: 0 !important;
 }
-
 </style>

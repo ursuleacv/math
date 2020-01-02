@@ -1,17 +1,20 @@
 <template>
   <div>
     <Multiplication op="x"/>
+    <PlayHistory module="multiplication"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Multiplication from '@/components/Multiplication.vue'
+import PlayHistory from '@/components/PlayHistory.vue'
 
 export default {
   name: 'multiplication',
   components: {
-    Multiplication
+    Multiplication,
+    PlayHistory
   },
   metaInfo: {
     title: 'Math for kids',

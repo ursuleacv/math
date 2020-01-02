@@ -5,7 +5,7 @@
       <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Max Number:</label>
-          <input v-model="maxNumber1" type="text" class="form-control" placeholder="Max Number 1" />
+          <input v-model.trim="maxNumber1" type="text" class="form-control" placeholder="Max Number 1" />
         </div>
       </div>
       <div class="col-12 col-md-auto">
@@ -33,7 +33,7 @@
       <div class="col-12 col-md-auto">
         <div class="form-group">
           <label>Exercises:</label>
-          <input v-model="maxCols" type="text" class="form-control" placeholder="Max Cols" />
+          <input v-model.trim="maxCols" type="text" class="form-control" placeholder="Max Cols" />
         </div>
       </div>
       <div class="col-12 col-md-auto">
