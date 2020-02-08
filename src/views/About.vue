@@ -3,18 +3,18 @@
     <h1>Contact us</h1>
     <div class="row">
       <div class="col-md-6 offset-md-3 text-left">
-        <form name="contact-form" method="GET" action="/contact-form" netlify netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true">
+        <form name="contact-form" method="POST" action="/" @submit.prevent="handleSubmit" netlify netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true">
           <p>
             <label>Your Name: </label>
-            <input type="text" name="name" class="form-control" />   
+            <input type="text" name="name" v-model="name" class="form-control" />   
           </p>
           <p>
             <label>Your Email: </label>
-            <input type="email" name="email" class="form-control"/>
+            <input type="email" name="email" v-model="email" class="form-control"/>
           </p>
           <p>
             <label>Message: </label>
-            <textarea name="message" class="form-control"></textarea>
+            <textarea name="message" v-model="message" class="form-control"></textarea>
           </p>
           <div data-netlify-recaptcha="true"></div>
           <p class="text-center">
@@ -28,6 +28,7 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios";
 
 export default {
   name: "contact-form",
@@ -49,6 +50,34 @@ export default {
       // {"name": 'viewport', content: 'width=device-width, initial-scale=1'},
       {"name": 'description', content: 'Contact us'}
     ]
+  },
+  methods: {
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+    handleSubmit () {
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+      axios.post('/', this.encode({
+          "form-name": "contact-form",
+          "name": this.name,
+          "email": this.email,
+          "message": this.message
+        }),
+        axiosConfig
+      )
+      .then(() => {
+        alert('thanks');
+      })
+      .catch(() => {
+        alert('404');
+      })
+    }
   }
 }
 </script>
