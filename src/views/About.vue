@@ -3,7 +3,7 @@
     <h1>Contact us</h1>
     <div class="row">
       <div class="col-md-6 offset-md-3 text-left">
-        <form name="contact-form" method="POST" netlify netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true">
+        <form name="contact-form" method="GET" action="/contact-form" netlify netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true">
           <p>
             <label>Your Name: </label>
             <input type="text" name="name" class="form-control" />   
