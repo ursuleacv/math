@@ -3,6 +3,12 @@
     <h1>Contact us</h1>
     <div class="row">
       <div class="col-md-6 offset-md-3 text-left">
+        <p v-if="errors.length">
+          <b>Please correct the following error(s):</b>
+          <ul>
+            <li v-for="(error,id) in errors" :key="id">{{ error }}</li>
+          </ul>
+        </p>
         <form name="contact-form" method="POST" action="/" @submit.prevent="handleSubmit" netlify netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true">
           <p>
             <label>Your Name: </label>
@@ -29,7 +35,7 @@
 <script>
 // @ is an alias to /src
 import axios from "axios";
-
+// https://www.netlify.com/blog/2018/09/07/how-to-integrate-netlify-forms-in-a-vue-app/
 export default {
   name: "contact-form",
   components: {
@@ -40,6 +46,7 @@ export default {
       name: '',
       email: '',
       message: '',
+      errors: [],
     };
   },
   metaInfo: {
@@ -59,7 +66,30 @@ export default {
         )
         .join("&");
     },
+    validate() {
+      this.errors = [];
+
+      if (!this.name) {
+        this.errors.push('Name is required.');
+      }
+      if (!this.email) {
+        this.errors.push('Email is required.');
+      }
+      if (!this.message) {
+        this.errors.push('Message is required.');
+      }
+
+      if(this.errors.length > 0) {
+        return false;
+      }
+      return true;
+    },
     handleSubmit () {
+
+      if(!this.validate()){
+        return;
+      }
+
       const axiosConfig = {
         header: { "Content-Type": "application/x-www-form-urlencoded" }
       };
@@ -72,11 +102,21 @@ export default {
         axiosConfig
       )
       .then(() => {
-        alert('thanks');
+        this.name = '';
+        this.email = '';
+        this.message = '';
+
+        alert('Thank you. Message successfuly sent');
       })
       .catch(() => {
-        alert('404');
-      })
+        alert('Oops! Something went wrong');
+      });
+
+      // fetch('/', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      //   body: this.encode({ 'form-name': name, ...data })
+      // })
     }
   }
 }
