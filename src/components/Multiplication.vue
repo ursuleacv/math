@@ -72,8 +72,8 @@ export default {
   },
   data: function() {
     return {
-      maxNumber1: 5,
-      maxNumber2: 12,
+      maxNumber1: 9,
+      maxNumber2: 9,
       maxCols: 20,
       exercises: [],
       score: 0,

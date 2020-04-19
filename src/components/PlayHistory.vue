@@ -94,6 +94,8 @@ export default {
     saveHistory: function(data) {
       this.history.push(data);
       localStorage.setItem("history", JSON.stringify(this.history));
+      this.init();
+      this.displayHistory();
     },
     clearHistory: function() {
       this.history = [];
