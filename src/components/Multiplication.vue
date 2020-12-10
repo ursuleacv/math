@@ -78,7 +78,8 @@ export default {
       exercises: [],
       score: 0,
       started: false,
-      finished: false
+      finished: false,
+      timestamp: Date.now(),
     };
   },
   methods: {
@@ -86,6 +87,7 @@ export default {
       this.started = true;
       this.exercises = [];
       this.score = 0;
+      this.timestamp = Date.now();
       const minimum = 2;
       for (let i = 0; i < this.maxCols; i++) {
         this.exercises.push({
@@ -118,7 +120,10 @@ export default {
         date: new Date(),
         exercises: this.exercises,
         score: this.score,
-        maxCols: this.maxCols
+        maxCols: this.maxCols,
+        maxNumber1: this.maxNumber1,
+        maxNumber2: this.maxNumber2,
+        timestamp: this.timestamp,
       });
     }
   }

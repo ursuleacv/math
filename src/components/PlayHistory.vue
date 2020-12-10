@@ -11,17 +11,20 @@
           :key="id"
           class="col-2 border border-secondary rounded m-1"
         >
-          {{item.date}}
-          <br />
           <b>Score:</b>
-          {{item.score}}/{{item.maxCols}}
+          {{item[0].score}}/{{item[0].maxCols}}
           (
-          <b>{{item.score/item.maxCols*100}}%</b>)
+          <b>{{item[0].score/item[0].maxCols*100}}%</b>)
+          <br>
+          {{item[0].date}} ({{item[0].maxNumber1}}x{{item[0].maxNumber2}})
+          <br>
+          Attempts: {{item.length}}
+<!--          {{item[0].timestamp}}-->
         </div>
       </div>
     </div>
 
-    <div class="float-right" v-if="items.length > 0">
+    <div class="float-right" v-if="Object.keys(items).length > 0">
       <a href="#" data-toggle="modal" data-target="#clearHistoryModal">Clear</a>
     </div>
 
@@ -86,10 +89,27 @@ export default {
     },
     displayHistory: function() {
       const self = this;
-      this.items = this.history.filter(function(entry) {
+      let items = [];
+
+      items = this.history.filter(function(entry) {
         entry.date = self.formatDate(entry.date);
         return entry.module === self.$props.module;
       });
+
+      let result = items.reduce(function(r, a) {
+        r[a.timestamp] = r[a.timestamp] || [];
+        r[a.timestamp].push(a);
+        return r;
+      }, Object.create(null));
+
+      for (const key in result) {
+        result[key].reverse();
+      }
+
+      this.items = result;
+
+      // eslint-disable-next-line
+      // console.log(result);
     },
     saveHistory: function(data) {
       this.history.push(data);
