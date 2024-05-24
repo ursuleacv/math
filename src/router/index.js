@@ -25,6 +25,12 @@ const routes = [{
             import ( /* webpackChunkName: "multiplication" */ '../views/Multiplication.vue')
     },
     {
+        path: '/division',
+        name: 'division',
+        component: () =>
+            import ( /* webpackChunkName: "division" */ '../views/Division.vue')
+    },
+    {
         path: '/addition',
         name: 'addition',
         component: () =>
