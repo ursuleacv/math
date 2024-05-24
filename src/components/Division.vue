@@ -88,7 +88,7 @@
         const minimum = 2;
         for (let i = 0; i < this.maxCols; i++) {
           let divisor = Math.floor(Math.random() * (this.maxDivisor - minimum + 1)) + minimum;
-          let quotient = Math.floor(Math.random() * (this.maxDividend / divisor - minimum + 1)) + minimum;
+          let quotient = Math.floor(Math.random() * 9) + 1; // quotient is always less than 10
           let dividend = divisor * quotient;
           this.exercises.push({
             dividend: dividend,
